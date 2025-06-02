@@ -1,0 +1,1 @@
+/usr/bin/c++  -Wall -Werror CMakeFiles/FirstProject.dir/Firstprogram.cpp.o -o FirstProject 

@@ -1,0 +1,3 @@
+/home/sushant/Personal/CPP_Practice_DSA/sorting_algorithms/build/CMakeFiles/FirstProject.dir
+/home/sushant/Personal/CPP_Practice_DSA/sorting_algorithms/build/CMakeFiles/edit_cache.dir
+/home/sushant/Personal/CPP_Practice_DSA/sorting_algorithms/build/CMakeFiles/rebuild_cache.dir
