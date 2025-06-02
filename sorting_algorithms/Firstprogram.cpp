@@ -70,6 +70,8 @@ std::vector<int> SelectionSort(std::vector<int>& original){
   return original;
 }
 
+// really simple
+// just go through an array and search for the smallest value 
 std::vector<int> BubbleSort(std::vector<int>& original){
   std::cout << "Bubble Sort" << std::endl;  
   int temp = 0;
@@ -83,6 +85,22 @@ std::vector<int> BubbleSort(std::vector<int>& original){
     }
   }
   return original;
+}
+
+
+// Todo: implement this function 
+std::vector<int> HeapSort(std::vector<int> & original){
+  std::cout << "Heap Sort";
+}
+
+// Todo: implement this function
+std::vector<int> CountingSort(std::vector<int> &original){
+  std::cout << "Counting Sort";
+}
+
+// Todo: implement this function
+std::vector<int> RadixSort(stod::vector<int> &original){
+  
 }
 
 // take the first element, that is sorted 
@@ -133,8 +151,6 @@ void quick_sort(std::vector<int> &original, int left, int right){
   quick_sort(original, index+1, right);
 }
 
-
-
 // sounds simple but is not
 // take a value (last value for now), and consider it a node
 // start pointers left and right
@@ -180,7 +196,9 @@ void mergesort(std::vector<int> &arr, int left, int right){
   merge(arr, left, mid, right);
 }
 
-
+// Recursive divide and concquer type of sorting algorithm
+// divide an array into small subarrays until they are sorted(essentially get just a single array which is sorted by default)
+// merge them as you go (have two pointers poiting at start of both subarrays, check for smaller value and insert at the back, copy to the original// array and return)
 std::vector<int> MergeSort(std::vector<int> &original){
   std::vector<int> org_copy = original;
   std::cout << "Merge sort";
@@ -189,6 +207,8 @@ std::vector<int> MergeSort(std::vector<int> &original){
   }   
   return original;
 }
+
+
 
 
 
