@@ -42,7 +42,7 @@ int main (int argc, char *argv[]) {
   }
   std::cout << "Sorted Array: \n";
   printVector(sortedArray);
-    return 0;
+  return 0;
 }
 
 void printVector(std::vector<int>& original){
@@ -72,6 +72,7 @@ std::vector<int> SelectionSort(std::vector<int>& original){
 
 // really simple
 // just go through an array and search for the smallest value 
+// when the smallest value is found, swap it with previous one 
 std::vector<int> BubbleSort(std::vector<int>& original){
   std::cout << "Bubble Sort" << std::endl;  
   int temp = 0;

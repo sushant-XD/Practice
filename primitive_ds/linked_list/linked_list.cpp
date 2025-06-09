@@ -1,5 +1,7 @@
 #include<iostream>
 
+void performPredefinedOperations();
+
 class Node{
 public:
   Node(int node_value, Node *next_node){
@@ -95,6 +97,52 @@ public:
     return length;
   }
 
+  Node *reverse(Node *head_node){
+    Node *current = head_node, *next, *previous = nullptr;
+    while(current != nullptr){
+      next = current->nxt_node;
+      
+      current->nxt_node = previous;
+
+      previous = current;
+      current = next;
+    }
+    return previous;
+  }
+
+  Node *middleNode(Node *head_node){
+    Node *fast, *slow;
+    fast = head_node;
+    slow = head_node;
+    while(fast != nullptr && fast->nxt_node != nullptr){
+      fast = fast->nxt_node->nxt_node;
+      slow = slow->nxt_node;
+    }
+    return slow;
+  }
+
+  Node *sort(Node *head_node){
+    int length = getLength(head_node);
+    Node *iterCopy = head_node; 
+    std::cout << "length of head node:" << length << std::endl;
+    for(int i=0;i<length-1;i++){
+      for(int j=0;j<length-i-1;j++){
+        if(iterCopy->value > iterCopy->nxt_node->value){
+          int temp = iterCopy->value;
+          iterCopy->value = iterCopy->nxt_node->value;
+          iterCopy->nxt_node->value = temp;
+        }
+        iterCopy = iterCopy->nxt_node;
+      }
+      iterCopy = head_node;
+    }
+    return iterCopy;
+  }
+
+// Node *divide(){
+// 
+//}
+
   ~LinkedList(){
   
   }
@@ -103,9 +151,27 @@ public:
 };
 
 int main(int argc, char *argv[]){
-  std::cout << "Welcome to singly linked list demo. Inserting elements 2,3,5 manually into linked list" << std::endl;
-  
+  int inOption;
+  std::cout << "Welcome to Linked List Demonstration\n ";
+  std::cout << "Select an option: \n";
+  std::cout << "-----------------------------------\n";
+  std::cout << "Perform Predefined Operation - 1 \n";
+  std::cin >> inOption;
+  switch (inOption) {
+    case 1:
+      performPredefinedOperations();
+      break;
+    
+    default:
+
+      break;
+  }
+  return 0;
+}
+
+void performPredefinedOperations(){
   Node *head_node = new Node(2);
+  std::cout << "Welcome to singly linked list demo. Inserting elements 2,3,5 manually into linked list" << std::endl;
   LinkedList ls;
   ls.insertToBack(3, head_node);
   ls.insertToBack(5, head_node);
@@ -147,7 +213,19 @@ int main(int argc, char *argv[]){
   int length = ls.getLength(head_node);
   std::cout << length << std::endl;
 
+  std::cout << "Reversing the list\n";
+  head_node = ls.reverse(head_node);
+  ls.printNodes(head_node);
+
+  std::cout << "Finding the middle node\n";
+  Node *middle_node = ls.middleNode(head_node);
+  std::cout << middle_node->value << std::endl;
+
+  std::cout << "Sorting the linked list\n";
+  head_node = ls.sort(head_node);
+  ls.printNodes(head_node);
 }
+
 
 
 
