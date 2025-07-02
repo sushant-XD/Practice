@@ -54,12 +54,40 @@ void InOrderTraversal(Node* rootNode){
   InOrderTraversal(rootNode->right);
 }
 
-void RemoveValue(Node* rootNode, int val){
-  Node* refNode = searchNode(rootNode, val);
-  if(refNode == nullptr) return;
-  if(refNode->left == nullptr){
 
+int findMin(Node* rootNode){
+  while(rootNode->left != nullptr){
+    rootNode = rootNode->left;
   }
+  return rootNode->value;
+}
+
+Node* RemoveValue(Node* rootNode, int value){
+  if(rootNode == nullptr) return nullptr;
+  if(value > rootNode->value){
+    rootNode->right = RemoveValue(rootNode->right, value);
+  } else if(value < rootNode->value){
+    rootNode->left = RemoveValue(rootNode->left, value);
+  } else{
+    if(rootNode->left == nullptr && rootNode->right == nullptr){
+      delete rootNode;
+      rootNode = nullptr;
+    }else if(rootNode->left == nullptr){
+      Node* tempNode = rootNode;
+      rootNode = rootNode->right;
+      delete tempNode;
+    }else if(rootNode->right == nullptr){
+      Node* tempNode = rootNode;
+      rootNode = rootNode->left;
+      delete tempNode; 
+    }else{
+      //find the minimum value from the right sub-tree
+      int val = findMin(rootNode->right);
+      rootNode->value = val;
+      rootNode->right = RemoveValue(rootNode->right, val);
+    }
+  }
+  return rootNode;
 }
 
 int main(){
@@ -88,4 +116,9 @@ int main(){
   }else{
     cout << "Value not in the tree" << endl;
   }
+  cout << "Enter value to remove from the node" << endl;
+  cin >> inputNum;
+  rootNode = RemoveValue(rootNode, inputNum);
+  cout << "After deleting the value" << endl;
+  InOrderTraversal(rootNode);
 }
